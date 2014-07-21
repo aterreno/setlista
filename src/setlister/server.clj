@@ -2,13 +2,13 @@
   (:require
    [ring.adapter.jetty :as jetty])
   (:use
-   [setlister.core :only [assemble-routes]]
+   [setlister.core :only [setlister-routes]]
    [ring.util.response :only [header]]
-   [compojure.handler :only [api]]))
+   [compojure.handler :only [site]]))
 
 (def handler
-  (-> (assemble-routes)
-      api))
+  (-> setlister-routes
+      site))
 
 (defn start [options]
   (jetty/run-jetty #'handler (assoc options :join? false)))

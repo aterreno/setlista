@@ -1,17 +1,29 @@
 (ns setlister.core
-  (:require [liberator.dev :as dev]
-            [clj-http.client :as http])
-  (:use [compojure.core :only [context GET routes defroutes]]))
+  (:require [clj-http.client :as http])
+  (:use [compojure.core :only [context GET routes defroutes]]
+        [hiccup.page :only [html5]]
+        [hiccup.element :only [javascript-tag]]))
 
 (def setlist-api "http://api.setlist.fm/rest/0.1/search/setlists.json")
 
+(defn index
+  []
+  (html5
+   [:head
+    [:title "Setlister"]
+    [:script {:type "text/javascript" :src "/cljs/goog/base.js"}]
+    [:script {:type "text/javascript" :src "/cljs/deps.js"}]
+    ]
+   [:body
+    [:h1 "Setlister"]
+    [:div#content]
+    ]))
+
 (defn search
   [artist date]
-  (let [response (http/get (format "%s?artistName=%s&eventDate=%s" setlist-api artist date))]
-    :handle-ok response))
+  (let [response (http/get (format "%s?artistName=%s&date=%s" setlist-api artist date))]
+    response))
 
-(defn assemble-routes []
-  (->
-   (routes
-    (GET ["/search/:artist/:date"] [artist date] (search artist date)))
-   (dev/wrap-trace :ui :header)))
+(defroutes setlister-routes
+  (GET "/" [] (index))
+  (GET ["/search/:artist/:date"] [artist date] (search artist date)))
