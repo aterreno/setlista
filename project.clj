@@ -10,5 +10,7 @@
 		 [ring/ring-core "1.2.1"]
                  [ring/ring-jetty-adapter "1.1.0"]]
   :plugins [[lein-ring "0.8.11"]]
+  :uberjar-name "setlisterclj.jar"
+  :min-lein-version "2.0.0"
   :ring {:handler setlister.server/handler
          :adapter {:port 8080}})
