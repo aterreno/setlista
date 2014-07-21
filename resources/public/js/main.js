@@ -22,8 +22,7 @@ var searchSetList = function (artistName, date) {
 
 $(function() {
 	$("#search").submit(function(event) {  		
-		$("a#playlist").attr("href", "");
-  		searchSetList($("input#artist").val(),$("input#date").val());  		
+  		searchSetList($("input#artist").val(),$("input#date").val());
   		event.preventDefault();
 	});		
 });
