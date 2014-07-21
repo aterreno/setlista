@@ -1,6 +1,7 @@
 (ns setlister.core
-  (:require [clj-http.client :as http])
-  (:use [compojure.core :only [context GET routes defroutes]]
+  (:require [clj-http.client :as http]
+            [compojure.route :as route])
+  (:use [compojure.core :only [GET defroutes]]
         [hiccup.page :only [html5]]
         [hiccup.element :only [javascript-tag]]))
 
@@ -11,10 +12,11 @@
   (html5
    [:head
     [:title "Setlister"]
-    [:script {:type "text/javascript" :src "/cljs/goog/base.js"}]
-    [:script {:type "text/javascript" :src "/cljs/deps.js"}]
+    [:script {:type "text/javascript" :src "http://code.jquery.com/jquery-1.10.1.min.js"}]
+    [:script {:type "text/javascript" :src "http://underscorejs.org/underscore-min.js"}]
+    [:script {:type "text/javascript" :src "/main.js"}]
     ]
-   [:body
+   [:body {:onload "searchSetList('jayhawks','15-07-2014')"}
     [:h1 "Setlister"]
     [:div#content]
     ]))
@@ -26,4 +28,6 @@
 
 (defroutes setlister-routes
   (GET "/" [] (index))
-  (GET ["/search/:artist/:date"] [artist date] (search artist date)))
+  (GET ["/search/:artist/:date"] [artist date] (search artist date))
+  (route/resources "/")
+  (route/not-found "Page not found"))
