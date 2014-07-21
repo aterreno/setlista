@@ -16,10 +16,16 @@
     [:script {:type "text/javascript" :src "http://underscorejs.org/underscore-min.js"}]
     [:script {:type "text/javascript" :src "/main.js"}]
     ]
-   [:body {:onload "searchSetList('jayhawks','15-07-2014')"}
+   [:body
     [:h1 "Setlister"]
-    [:div#content]
-    ]))
+    [:div#content
+      [:form#search
+        [:label {:for "artist"} "Artist"]
+        [:input#artist {:type "text" :name "artist"}]
+        [:label {:for "date"} "Gig Date"]
+        [:input#date {:type "text" :name "date"}]
+        [:input {:type "submit" :value "Submit"}]]
+      [:a#playlist {:href "spotify:trackset:PlaylistName:"} "Play"]]]))
 
 (defn search
   [artist date]
