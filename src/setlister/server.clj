@@ -4,7 +4,8 @@
   (:use
    [setlister.core :only [setlister-routes]]
    [ring.util.response :only [header]]
-   [compojure.handler :only [site]]))
+   [compojure.handler :only [site]])
+  (:gen-class :main true))
 
 (def handler
   (-> setlister-routes

@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/setlister-standalone.jar clojure.main -m setlister.server $PORT
+web: java $JVM_OPTS -jar target/setlister.jar $PORT
