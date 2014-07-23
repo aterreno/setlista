@@ -21,7 +21,13 @@ var searchSetList = function (artistName, date) {
 };
 
 $(function() {
-	$("#search").submit(function(event) {  		
+
+	$('.datepicker').pickadate({
+	    format: 'dd-mm-yyyy'
+	});
+
+	$("#search").submit(function(event) {
+		console.log($("input#date").val());
   		searchSetList($("input#artist").val(),$("input#date").val());
   		event.preventDefault();
 	});		

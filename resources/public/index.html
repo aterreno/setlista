@@ -10,11 +10,14 @@
 <link href="css/willamette_type6_color4.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 
+<link href="./bower_components/pickadate/lib/compressed/themes/classic.css" rel="stylesheet">
+<link href="./bower_components/pickadate/lib/compressed/themes/classic.date.css" rel="stylesheet">
+
 <script type="text/javascript" src="./bower_components/modernizr/modernizr.js"></script>
 <script type="text/javascript" src="./bower_components/underscore/underscore.js"></script>
-<script type="text/javascript" src="./bower_components/underscore/underscore.js"></script>
-<script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="./bower_components/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="./bower_components/pickadate/lib/picker.js"></script>
+<script type="text/javascript" src="./bower_components/pickadate/lib/picker.date.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 
 </head>
@@ -29,7 +32,7 @@
 				<div id="mc_embed_signup">				
 					<form id="search">
 						<input id="artist" name="artist" type="text" placeholder="Artist" value="" class="required"> 
-						<input id="date" name="date" type="text"  placeholder="dd-mm-yyyy" value="">
+						<input id="date" class="datepicker" name="date" type="text"  placeholder="dd-mm-yyyy" value="">
 						<input type="submit" value="Search &rarr;" name="search" id="mc-embedded-subscribe" class="button round">
 					</form>
 				</div>				
