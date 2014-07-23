@@ -26,9 +26,37 @@ $(function() {
 	    format: 'dd-mm-yyyy'
 	});
 
+		$("form").validate({
+		rules: {
+	           artist : {
+	                   required: true
+	           },
+	           date : {
+	                   required: true
+	           }
+	   },
+	    messages: {
+
+	           artist : {
+	                   required: "Please enter the artist name"
+	           },
+	           date : {
+	                   required: "Please up pick a date"
+	           }
+	   }
+
+	});
+
 	$("#search").submit(function(event) {
-		console.log($("input#date").val());
+		return false;   
   		searchSetList($("input#artist").val(),$("input#date").val());
   		event.preventDefault();
 	});		
+
+	
 });
+
+
+    
+	
+
