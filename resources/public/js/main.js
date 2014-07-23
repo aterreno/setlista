@@ -56,7 +56,7 @@ $(function() {
     });
     $("#search").submit(function(event) {
     	$("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
-    	$('iframe').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:Setlister:");    	
+    	$('iframe').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");    	
         searchSetList($("input#artist").val(), $("input#date").val());
         event.preventDefault();
     });

@@ -1,14 +1,14 @@
-(ns setlister.server
+(ns setlista.server
   (:require
    [ring.adapter.jetty :as jetty])
   (:use
-   [setlister.core :only [setlister-routes]]
+   [setlista.core :only [setlista-routes]]
    [ring.util.response :only [header]]
    [compojure.handler :only [site]])
   (:gen-class :main true))
 
 (def handler
-  (-> setlister-routes
+  (-> setlista-routes
       site))
 
 (defn start [options]

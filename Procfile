@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -jar target/setlister.jar $PORT
+web: java $JVM_OPTS -jar target/setlista.jar $PORT

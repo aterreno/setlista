@@ -1,4 +1,4 @@
-(defproject setlister "0.1.0-SNAPSHOT"
+(defproject setlista "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -10,9 +10,9 @@
 		 [ring/ring-core "1.2.1"]
                  [ring/ring-jetty-adapter "1.1.0"]]
   :plugins [[lein-ring "0.8.11"]]
-  :uberjar-name "setlister.jar"
+  :uberjar-name "setlista.jar"
   :min-lein-version "2.0.0"
-  :ring {:handler setlister.server/handler
+  :ring {:handler setlista.server/handler
          :adapter {:port 8080}}
-  :main setlister.server
-  :aot [setlister.server])
+  :main setlista.server
+  :aot [setlista.server])
