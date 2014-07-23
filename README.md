@@ -23,3 +23,4 @@ With a bit of JS magic you can then query spotify for the songs returned:
 * better ui :-)
 * *play has to work on mobile*
 * debate: create playlist and therefore force user to login vs current 'dodgy version'
+* pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist
