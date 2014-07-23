@@ -5,7 +5,10 @@ var findTrack = function(song, artistName) {
 	success: function (response) {	    
 	    var trackId = _.first(response.tracks.items).id;
 	    var current = $("a#playlist").attr("href");
-	    $("a#playlist").attr("href", current.concat(",",trackId))
+	    $("a#playlist").attr("href", current.concat(",",trackId));
+
+	    var current = $('iframe').attr('src');
+	    $('iframe').attr('src', current.concat(",",trackId));
 		}
     });
 }
@@ -47,13 +50,10 @@ $(function() {
 
 	});
 
-	$("#search").submit(function(event) {
-		return false;   
+	$("#search").submit(function(event) {		
   		searchSetList($("input#artist").val(),$("input#date").val());
   		event.preventDefault();
-	});		
-
-	
+	});
 });
 
 
