@@ -20,7 +20,6 @@ With a bit of JS magic you can then query spotify for the songs returned:
 
 * error handling 
 * empty results 
-* ~~analytics ~~
-* feedback form 
 * better ui :-)
 * *play has to work on mobile*
+* debate: create playlist and therefore force user to login vs current 'dodgy version'
