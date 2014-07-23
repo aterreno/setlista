@@ -33,7 +33,8 @@ var searchSetList = function(artistName, date) {
 };
 $(function() {
     $('.datepicker').pickadate({
-        format: 'dd-mm-yyyy'
+        format: 'dd-mm-yyyy',
+        max: new Date()
     });
     $("form").validate({
         rules: {
