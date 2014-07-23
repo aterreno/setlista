@@ -1,14 +1,25 @@
-# setlister
+http://api.setlist.fm/rest/0.1/search/setlists.json?artistName=M.%20Ward&eventDate=15-07-2014
+http://api.setlist.fm/rest/0.1/search/setlists.json?artistName=jayhawks&date=15-07-2014
+https://api.spotify.com/v1/search?q=jayhawks I'm Gonna Make You Love Me
 
-A Clojure library designed to ... well, that part is up to you.
+tipically you go to a concert and you know the artist and which day, easy. defaults to today
 
-## Usage
+returns just some json
 
-FIXME
+from that structure to a spotify playlist should be very simple
 
-## License
 
-Copyright © 2014 FIXME
+Mailaddressantonio.terreno@gmail.com
+Application Namesetlister
+API Key600152ad-dda5-460f-9ae2-483931a7c760
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+
+- transformation (wtf I meant when I wrote this?)
+
+- error handling 
+- empty results 
+- appear / disappear of buttons / ui
+- analytics 
+- feedback form 
+
+- better ui :-)
