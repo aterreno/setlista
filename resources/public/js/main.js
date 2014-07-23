@@ -13,9 +13,9 @@ var findTrack = function(song, artistName) {
             $("a#playlist").show();
 
 
-            var current = $('iframe').attr('src');
-            $('iframe').attr('src', current.concat(",", trackId));
-            $('iframe').show();
+            var current = $('iframe#spotify').attr('src');
+            $('iframe#spotify').attr('src', current.concat(",", trackId));
+            $('iframe#spotify').show();
         }
     });
 }
@@ -56,7 +56,7 @@ $(function() {
     });
     $("#search").submit(function(event) {
     	$("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
-    	$('iframe').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");    	
+    	$('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");    	
         searchSetList($("input#artist").val(), $("input#date").val());
         event.preventDefault();
     });
