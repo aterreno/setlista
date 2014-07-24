@@ -6,3 +6,8 @@ span.error {
 	-webkit-border-radius: 4px;
   	border-radius: 4px;
 }
+
+iframe {
+	border:none;
+	background-color: transparent;
+}
