@@ -19,7 +19,7 @@ With a bit of JS magic you can then query spotify for the songs returned:
 ######Todo
 
 * better ui :-)
-* make play button work on mobile
 * save plalyst as separate button / feature will ask to log-in
-* cloudfront or nginx for static content
+* make play button work on mobile
+* cloudfront or nginx for static content, bit silly to use compojure for that
 * pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist

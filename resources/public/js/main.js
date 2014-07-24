@@ -16,7 +16,7 @@ var findTrack = function(song, artistName) {
             $('iframe#spotify').show();
         }
     });
-}
+};
 var searchSetList = function(artistName, date) {
     $.ajax({
         url: '/search/' + artistName + '/' + date,
