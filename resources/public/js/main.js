@@ -11,8 +11,6 @@ var findTrack = function(song, artistName) {
             var current = $("a#playlist").attr("href");
             $("a#playlist").attr("href", current.concat(",", trackId));
             $("a#playlist").show();
-
-
             var current = $('iframe#spotify').attr('src');
             $('iframe#spotify').attr('src', current.concat(",", trackId));
             $('iframe#spotify').show();
@@ -21,14 +19,18 @@ var findTrack = function(song, artistName) {
 }
 var searchSetList = function(artistName, date) {
     $.ajax({
-        url: '/search/' + artistName + '/' + date,
-        success: function(response) {
-            _.each(response.setlists.setlist.sets.set, function(set) {
-                _.each(set.song, function(song) {
-                    findTrack(song, artistName)
-                });
-            });
-        }
+            url: '/search/' + artistName + '/' + date,
+            success: function(response) {
+                _.each(response.setlists.setlist.sets.set, function(set) {
+                    _.each(set.song, function(song) {
+                        findTrack(song, artistName);
+                    });
+                })
+            },
+            error: function(response) {
+                $("span.error").show();
+                $("span.error").text("Sorry I can't find this gig");
+            }        
     });
 };
 $(function() {
@@ -55,8 +57,9 @@ $(function() {
         }
     });
     $("#search").submit(function(event) {
-    	$("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
-    	$('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");    	
+        $("span.error").hide();
+        $("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
+        $('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");
         searchSetList($("input#artist").val(), $("input#date").val());
         event.preventDefault();
     });

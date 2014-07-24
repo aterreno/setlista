@@ -8,8 +8,12 @@
 
 (defn search
   [artist date]
-  (let [response (http/get (format "%s?artistName=%s&date=%s" setlist-api artist date))]
-    response))
+  (let [url (format "%s?artistName=%s&date=%s" setlist-api artist date)]
+    (try
+      (http/get url)
+      (catch Exception e
+        (println (format "Couldn't GET %s, got exeption %s"), url, e)
+        {}))))
 
 (defroutes setlista-routes
   (GET "/" [] (io/resource "public/index.html"))

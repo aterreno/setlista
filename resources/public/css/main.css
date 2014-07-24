@@ -1,3 +1,8 @@
 label.error {
     margin-top: 0.5rem;
 }
+
+span.error {
+	-webkit-border-radius: 4px;
+  	border-radius: 4px;
+}
