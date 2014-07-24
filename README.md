@@ -18,11 +18,8 @@ With a bit of JS magic you can then query spotify for the songs returned:
 
 ######Todo
 
-* exeption handlding
-* error handling 
-* empty results 
 * better ui :-)
 * make play button work on mobile
-* pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist
 * save plalyst as separate button / feature will ask to log-in
-* cloudfront for static content
+* cloudfront or nginx for static content
+* pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist

@@ -19,18 +19,18 @@ var findTrack = function(song, artistName) {
 }
 var searchSetList = function(artistName, date) {
     $.ajax({
-            url: '/search/' + artistName + '/' + date,
-            success: function(response) {
-                _.each(response.setlists.setlist.sets.set, function(set) {
-                    _.each(set.song, function(song) {
-                        findTrack(song, artistName);
-                    });
-                })
-            },
-            error: function(response) {
-                $("span.error").show();
-                $("span.error").text("Sorry I can't find this gig");
-            }        
+        url: '/search/' + artistName + '/' + date,
+        success: function(response) {
+            _.each(response.setlists.setlist.sets.set, function(set) {
+                _.each(set.song, function(song) {
+                    findTrack(song, artistName);
+                });
+            })
+        },
+        error: function(response) {
+            $("span.error").show();
+            $("span.error").text("Sorry I can't find this gig");
+        }
     });
 };
 $(function() {
