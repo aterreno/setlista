@@ -6,8 +6,10 @@
 
 (def setlist-api "http://api.setlist.fm/rest/0.1/search/setlists.json")
 
-(defn index []
-  (io/resource "public/index.html"))
+(defn home []
+  {:status 200
+   :headers {"Content-Type" "text/html"}
+   :body (slurp (io/resource "public/index.html"))})
 
 (defn search
   [artist date]
@@ -19,7 +21,7 @@
         {}))))
 
 (defroutes setlista-routes
-  (GET "/" [] (index))
+  (GET "/" [] (home))
   (GET "/status" [] {:status 200 :body "OK"})
   (GET ["/search/:artist/:date"] [artist date] (search artist date))
   (route/resources "/")
