@@ -22,4 +22,6 @@ With a bit of JS magic you can then query spotify for the songs returned:
 * save plalyst as separate button / feature will ask to log-in
 * make play button work on mobile
 * cloudfront or nginx for static content, bit silly to use compojure for that
+* autocomplete for artists
+* more details on the gig on the side (location/date/map/setlist in text, whatever)
 * pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist
