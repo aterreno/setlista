@@ -7,8 +7,7 @@
 (def setlist-api "http://api.setlist.fm/rest/0.1/search/setlists.json")
 
 (defn index []
-  {:headers {"Content-Type" "text/html"}
-   :body (io/resource "public/index.html")})
+  (io/resource "public/index.html"))
 
 (defn search
   [artist date]
