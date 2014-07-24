@@ -3,7 +3,6 @@
    [ring.adapter.jetty :as jetty])
   (:use
    [setlista.core :only [setlista-routes]]
-   [ring.util.response :only [header]]
    [compojure.handler :only [site]])
   (:gen-class :main true))
 

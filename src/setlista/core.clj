@@ -2,9 +2,7 @@
   (:require [clj-http.client :as http]
             [compojure.route :as route]
             [clojure.java.io :as io])
-  (:use [compojure.core :only [GET defroutes]]
-        [hiccup.page :only [html5]]
-        [hiccup.element :only [javascript-tag]]))
+  (:use [compojure.core :only [GET defroutes]]))
 
 (def setlist-api "http://api.setlist.fm/rest/0.1/search/setlists.json")
 
