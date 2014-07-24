@@ -20,6 +20,7 @@
 
 (defroutes setlista-routes
   (GET "/" [] (index))
+  (GET "/status" [] {:status 200 :body "OK"})
   (GET ["/search/:artist/:date"] [artist date] (search artist date))
   (route/resources "/")
   (route/not-found "Page not found"))
