@@ -18,8 +18,12 @@ With a bit of JS magic you can then query spotify for the songs returned:
 
 ######Todo
 
+* go private on git
 * better ui :-)
 * save plalyst as separate button / feature will ask to log-in
+* a more free search for concerts 
+* have a separate spotify account for the app and save some 'glorious concerts plalysts' there
+* show last searches
 * make play button work on mobile
 * cloudfront or nginx for static content, bit silly to use compojure for that
 * autocomplete for artists
