@@ -27,3 +27,11 @@ With a bit of JS magic you can then query spotify for the songs returned:
 * cloudfront or nginx for static content, bit silly to use compojure for that
 * autocomplete for artists
 * pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist
+* integrate with (rapgenius) for lyrics
+* integrate with MusiXMatch for karaoke
+* most played by artist, least played by artis
+* top searches
+* what are users searching right now
+* make search result unique, so can share the result
+
+
