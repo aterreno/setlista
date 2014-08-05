@@ -21,11 +21,29 @@ var searchSetList = function(artistName, date) {
     $.ajax({
         url: '/search/' + artistName + '/' + date,
         success: function(response) {
-            _.each(response.setlists.setlist.sets.set, function(set) {
-                _.each(set.song, function(song) {
-                    findTrack(song, artistName);
+            _.each(response.setlists.setlist, function(set) {
+                $.get('templates/result.mst', function(template) {
+                    var rendered = Mustache.render(template, {
+                        id: set["@id"],
+                        artist: set.artist["@name"],
+                        venue: set.venue["@name"],
+                        city: set.venue.city["@name"],
+                        state: set.venue.city["@state"],
+                        date: moment(set["@eventDate"], "DD-MM-YYYY").format("dddd, MMMM Do YYYY")
+                    });
+                    $('#target').append(rendered);
+                    $('#' + set["@id"]).click(set, function(evt) {                        
+                        reset();
+                        _.each(set.sets.set, function(set) {
+                            console.log(set.song);
+                            _.each(set.song, function(song) {
+                                findTrack(song, artistName);
+                            });
+                        });
+                        $('iframe#spotify').show();
+                    });
                 });
-            })
+            });
         },
         error: function(response) {
             $("span.error").show();
@@ -33,6 +51,13 @@ var searchSetList = function(artistName, date) {
         }
     });
 };
+var reset = function() {
+    $("#target").html("");
+    $("span.error").hide();
+    $("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
+    $('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");
+    $('iframe#spotify').hide();
+}
 $(function() {
     $('.datepicker').pickadate({
         format: 'dd-mm-yyyy',
@@ -44,12 +69,12 @@ $(function() {
                 required: true
             },
             date: {
-                required: true
+                required: false
             }
         },
         messages: {
             artist: {
-                required: "Please enter the artist name"
+                required: "Please enter the artist name or the venue"
             },
             date: {
                 required: "Please up pick a date"
@@ -57,9 +82,7 @@ $(function() {
         }
     });
     $("#search").submit(function(event) {
-        $("span.error").hide();
-        $("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
-        $('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");
+        reset();
         searchSetList($("input#artist").val(), $("input#date").val());
         event.preventDefault();
     });

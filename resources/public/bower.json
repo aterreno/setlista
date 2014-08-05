@@ -11,8 +11,10 @@
     "jquery": "1.7",
     "underscore": "1.6.0",
     "pickadate": "3.5.3",
-    "modernizr" : "2.8.3",
-    "jquery-validation" : "1.13.0"    
+    "modernizr": "2.8.3",
+    "jquery-validation": "1.13.0",
+    "mustache.js": "0.8.2",    
+    "moment": "~2.8.1"
   },
   "ignore": [
     "**/.*",
