@@ -8,7 +8,9 @@
                  [clj-http "0.9.2"]
                  [hiccup "1.0.5"]
 		 [ring/ring-core "1.2.1"]
-                 [ring/ring-jetty-adapter "1.1.0"]]
+                 [ring/ring-jetty-adapter "1.1.0"]
+                 [com.taoensso/carmine "2.6.2"]
+                 [org.clojure/data.json "0.2.5"]]
   :plugins [[lein-ring "0.8.11"]]
   :uberjar-name "setlista.jar"
   :min-lein-version "2.0.0"
