@@ -16,7 +16,7 @@
 (defn search
   ([artist] (search artist ""))
   ([artist date]
-     ;(search-history/save artist date)
+     (search-history/save artist date)
      (println artist date)
      (let [url (format "%s?artistName=%s&date=%s" setlist-api artist date)]
        (println url)
