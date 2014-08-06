@@ -1,0 +1,5 @@
+<ul>
+    {{#.}}
+    <li><strong>{{artist}}</strong> {{date}}</li>
+    {{/.}}
+</ul>

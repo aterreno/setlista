@@ -20,13 +20,12 @@ var findTrack = function(song, artistName) {
 var searchSetList = function(artistName, date) {
     $.ajax({
         url: '/search/' + artistName + '/' + date,
-        success: function(response) {              
+        success: function(response) {
             var setlist = response.setlists.setlist;
             if (!_.isArray(setlist)) {
                 setlist = [setlist]; //need to wrap the result of the API call in an array otherwise we will loop on its fields #fuckme
             }
             _.each(setlist, function(set) {
-                
                 $.get('templates/result.mst', function(template) {
                     var rendered = Mustache.render(template, {
                         id: set["@id"],
@@ -37,9 +36,9 @@ var searchSetList = function(artistName, date) {
                         date: moment(set["@eventDate"], "DD-MM-YYYY").format("dddd, MMMM Do YYYY")
                     });
                     $('#target').append(rendered);
-                    $('#' + set["@id"]).click(set, function(evt) {                        
+                    $('#' + set["@id"]).click(set, function(evt) {
                         reset();
-                        _.each(set.sets.set, function(set) {                            
+                        _.each(set.sets.set, function(set) {
                             _.each(set.song, function(song) {
                                 findTrack(song, artistName);
                             });
@@ -57,12 +56,26 @@ var searchSetList = function(artistName, date) {
 };
 var reset = function() {
     $("#target").html("");
+    $("#history").html("");
     $("span.error").hide();
     $("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
     $('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");
     $('iframe#spotify').hide();
 }
 $(function() {
+    $.get('templates/history.mst', function(template) {
+        $.get("/search-history", function(data) {
+            _.each(data, function(history) {
+                var eventDate = moment(history.date, "DD-MM-YYYY");                
+                var date = eventDate.isValid() ? eventDate.format("dddd, MMMM Do YYYY") : "";
+                var rendered = Mustache.render(template, {
+                    artist: history.artist,
+                    date: date
+                });
+                $('#history').append(rendered);
+            });
+        });
+    });
     $('.datepicker').pickadate({
         format: 'dd-mm-yyyy',
         max: new Date()
@@ -85,8 +98,7 @@ $(function() {
             }
         }
     });
-    $("#search").submit(function(event) {
-        reset();
+    $("#search").submit(function(event) {  
         searchSetList($("input#artist").val(), $("input#date").val());
         event.preventDefault();
     });

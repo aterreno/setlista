@@ -1,7 +1,10 @@
-<hr>
 <div class="row">    
-    <div class="small-12 small-centered columns">
-        <p><strong>{{artist}}</strong> <i>at</i> {{ venue }}, {{city}}, {{state}} {{date}}</p>
+    <div class="small-6 small-centered columns">
+    	<ul>
+    		{{#.}}
+    		<li><strong>{{artist}}</strong> <i>at</i> {{ venue }}, {{city}}, {{state}} {{date}}</li>
+    		{{/.}}
+    	</ul>        
         <ul class="inline-list">
             <li><a href="#" id="{{id}}">Play</a></li>            
         </ul>
