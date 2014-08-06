@@ -13,9 +13,10 @@
     (println {:host (.getHost uri)
                         :port (.getPort uri)
                         :password (first (rest userpass))})
-    {:host (.getHost uri)
-                        :port (.getPort uri)
-                        :password (first (rest userpass))}))
+
+    {:pool {} :spec {:host (.getHost uri)
+                     :port (.getPort uri)
+                     :password (first (rest userpass))} }))
 
 (defn server-conn []
   (println (System/getenv "REDISCLOUD_URL"))
