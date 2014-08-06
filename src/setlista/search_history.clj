@@ -9,11 +9,16 @@
        userpass
        (and (.getUserInfo uri)
             (clojure.string/split (.getUserInfo uri) #":"))]
-    (car/make-conn-spec :host (.getHost uri)
+
+    (println {:host (.getHost uri)
                         :port (.getPort uri)
-                        :password (first (rest userpass)))))
+                        :password (first (rest userpass))})
+    {:host (.getHost uri)
+                        :port (.getPort uri)
+                        :password (first (rest userpass))}))
 
 (defn server-conn []
+  (println (System/getenv "REDISCLOUD_URL"))
   (when-let [config (System/getenv "REDISCLOUD_URL")]
     (heroku-conn)))
 
