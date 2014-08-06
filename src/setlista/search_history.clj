@@ -2,9 +2,20 @@
   (:require [taoensso.carmine :as car :refer (wcar)]
             [clojure.data.json :as json]))
 
+(defn heroku-conn []
+  (let
+      [redisurl (System/getenv "REDISCLOUD_URL")
+       uri (new java.net.URI redisurl)
+       userpass
+       (and (.getUserInfo uri)
+            (clojure.string/split (.getUserInfo uri) #":"))]
+    (car/make-conn-spec :host (.getHost uri)
+                        :port (.getPort uri)
+                        :password (first (rest userpass)))))
+
 (defn server-conn []
-  (when-let [redis-cloud (get (System/getenv) "REDISCLOUD_URL")]
-    {:pool {} :spec {:host redis-cloud :port 6379}}))
+  (when-let [config (System/getenv "REDISCLOUD_URL")]
+    (heroku-conn)))
 
 (def last-searches "last-searches")
 
