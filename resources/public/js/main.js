@@ -20,8 +20,13 @@ var findTrack = function(song, artistName) {
 var searchSetList = function(artistName, date) {
     $.ajax({
         url: '/search/' + artistName + '/' + date,
-        success: function(response) {
-            _.each(response.setlists.setlist, function(set) {
+        success: function(response) {              
+            var setlist = response.setlists.setlist;
+            if (!_.isArray(setlist)) {
+                setlist = [setlist]; //need to wrap the result of the API call in an array otherwise we will loop on its fields #fuckme
+            }
+            _.each(setlist, function(set) {
+                
                 $.get('templates/result.mst', function(template) {
                     var rendered = Mustache.render(template, {
                         id: set["@id"],
@@ -34,8 +39,7 @@ var searchSetList = function(artistName, date) {
                     $('#target').append(rendered);
                     $('#' + set["@id"]).click(set, function(evt) {                        
                         reset();
-                        _.each(set.sets.set, function(set) {
-                            console.log(set.song);
+                        _.each(set.sets.set, function(set) {                            
                             _.each(set.song, function(song) {
                                 findTrack(song, artistName);
                             });
