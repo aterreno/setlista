@@ -3,7 +3,7 @@
             [clojure.data.json :as json]))
 
 (defn server-conn []
-  (when-let [redis-cloud (System/getProperty "REDISCLOUD_URL")]
+  (when-let [redis-cloud (get (System/getenv) "REDISCLOUD_URL")]
     {:pool {} :spec {:host redis-cloud :port 6379}}))
 
 (def last-searches "last-searches")
