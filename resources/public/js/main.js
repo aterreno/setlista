@@ -82,6 +82,11 @@ var reset = function() {
     $('iframe#spotify').hide();
 };
 $(function() {
+    
+    var urlChunks = _.last(document.URL.split('/'), 2);
+    $("input#artist").val(decodeURI(_.first(urlChunks)));
+    $("input#date").val(decodeURI(_.last(urlChunks)));
+
     reloadHistory();
     $('.datepicker').pickadate({
         format: 'dd-mm-yyyy',
