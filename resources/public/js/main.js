@@ -32,7 +32,7 @@ var findTrack = function(song, artistName) {
             var trackId = _.first(response.tracks.items).id;
             var current = $('iframe#spotify').attr('src');
             $('iframe#spotify').attr('src', current.concat(",", trackId));
-            $('iframe#spotify').show();            
+            $('iframe#spotify').show();
         }
     });
 };
@@ -82,13 +82,11 @@ var reset = function() {
     $('iframe#spotify').hide();
 };
 $(function() {
-    
     if (/gig/i.test(document.URL)) {
         var urlChunks = _.last(document.URL.split('/'), 2);
         $("input#artist").val(decodeURI(_.first(urlChunks)));
         $("input#date").val(decodeURI(_.last(urlChunks)));
     };
-
     reloadHistory();
     $('.datepicker').pickadate({
         format: 'dd-mm-yyyy',
@@ -112,9 +110,31 @@ $(function() {
             }
         }
     });
+    
+    var cache = new LastFMCache();
+    
+    var lastfm = new LastFM({
+        apiKey: '3ae25094d751a06ad7e800dad1fa905d',
+        apiSecret: '3794ec48f20789ebbcbd95f7e235a0c6',
+        cache: cache
+    });
+
     $("#search").submit(function(event) {
         searchSetList($("input#artist").val(), $("input#date").val());
         History.replaceState(null, "SetLista", "/gig/" + $("input#artist").val() + "/" + $("input#date").val());
         event.preventDefault();
+
+        /* Load some artist info. */
+        lastfm.artist.getInfo({
+            artist: $("input#artist").val()
+        }, {
+            success: function(data) {
+                $("p#bio").html(data.artist.bio.content);
+                // console.log(data.artist.bio.content);
+            },
+            error: function(code, message) {
+                /* Show error message. */
+            }
+        });
     });
 });
