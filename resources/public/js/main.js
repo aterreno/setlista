@@ -8,9 +8,6 @@ var findTrack = function(song, artistName) {
         },
         success: function(response) {
             var trackId = _.first(response.tracks.items).id;
-            var current = $("a#playlist").attr("href");
-            $("a#playlist").attr("href", current.concat(",", trackId));
-            $("a#playlist").show();
             var current = $('iframe#spotify').attr('src');
             $('iframe#spotify').attr('src', current.concat(",", trackId));
             $('iframe#spotify').show();
@@ -44,6 +41,9 @@ var searchSetList = function(artistName, date) {
                             });
                         });
                         $('iframe#spotify').show();
+                                    $('h5#player').show();
+            $('h5#results').show();
+
                     });
                 });
             });
@@ -55,10 +55,7 @@ var searchSetList = function(artistName, date) {
     });
 };
 var reset = function() {
-    $("#target").html("");
-    $("#history").html("");
     $("span.error").hide();
-    $("a#playlist").attr("href", "spotify:trackset:PlaylistName:");
     $('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");
     $('iframe#spotify').hide();
 }
@@ -66,7 +63,7 @@ $(function() {
     $.get('templates/history.mst', function(template) {
         $.get("/search-history", function(data) {
             _.each(data, function(history) {
-                var eventDate = moment(history.date, "DD-MM-YYYY");                
+                var eventDate = moment(history.date, "DD-MM-YYYY");
                 var date = eventDate.isValid() ? eventDate.format("dddd, MMMM Do YYYY") : "";
                 var rendered = Mustache.render(template, {
                     artist: history.artist,
@@ -98,7 +95,8 @@ $(function() {
             }
         }
     });
-    $("#search").submit(function(event) {  
+    $("#search").submit(function(event) {
+        $("#target").html("");
         searchSetList($("input#artist").val(), $("input#date").val());
         event.preventDefault();
     });

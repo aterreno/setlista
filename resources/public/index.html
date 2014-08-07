@@ -4,8 +4,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>setlista &mdash; Home</title>
-        <meta name="description" content="setlistas : Search for a gig and play it with spotify">
-        <link href="css/willamette_type6_color4.css" rel="stylesheet">
+        <meta name="description" content="setlista : Search for a gig and play it with spotify">
+        <link href="css/foundation.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="./bower_components/pickadate/lib/compressed/themes/classic.css" rel="stylesheet">
@@ -20,54 +20,57 @@
         <script type="text/javascript" src="./bower_components/moment/moment.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <script>
-                                                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                                                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                                                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                                                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-                                                ga('create', 'UA-53131336-1', 'auto');
-                                                ga('send', 'pageview');
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-53131336-1', 'auto');
+            ga('send', 'pageview');
         </script>
     </head>
     <body>
-        <a href="https://github.com/aterreno/setlista"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
-        <div class="section-hero section-bg-color1">
-            <div class="row">
-                <div class="small-6 columns">
-                    <div class="download-box">
-                        <h3>Search for a Gig</h3>
-                        <div id="mc_embed_signup">
-                            <form id="search">
-                                <input id="artist" name="artist" type="text" placeholder="Artist or Venue" value="" class="required">
-                                <input id="date" class="datepicker" name="date" type="text"  placeholder="Gig's date (optional)" value="" >
-                                <input type="submit" value="Search &rarr;" name="search" id="mc-embedded-subscribe" class="button round ">
-                            </form>
-                        </div>
-                        <p class="p-bigger">
-                        <a style="display:none" class="button round" id="playlist" href="spotify:trackset:PlaylistName:">Play in Spotify</a>
-                        </p>
-                        <span class="error" style="display:none">Sorry I can't find this gig</span>
-                    </div>
-                </div>
-                <div class="small-6 columns" id="history">
-                </div>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="small-6 small-centered columns">
-                    <iframe id="spotify" style="display:none" src="https://embed.spotify.com/?uri=spotify:trackset:setlista:" width="100%" height="380"></iframe>
-                </div>
-            </div>
-            <br/>
-            <div class="small-6 small-centered columns" id="target">
-            </div>
+        <nav class="top-bar">
+            <ul class="title-area">
+                <li class="name">
+                    <h1><a href="#">SetLista</a></h1>
+                </li>
+            </ul>
+        </nav>
 
+        <div class="row left">
+            <br/>
         </div>
-        <footer class=" section-bg-color2 ">
-            <div class="row">
-                <div class="small-12 medium-12 large-12 columns">
-                    <ul class="footer-links">
-                        <li>© 2014 <a href="http://www.the-arm.com" target="_blank">Built by The Arm</a>. All rights reserved.</li>
-                    </ul>
+        <div class="row left" >
+            <div class="large-3 columns">
+                <h5>Search for a gig</h5>
+                <form id="search">
+                    <input id="artist" name="artist" type="text" placeholder="Artist or Venue" value="" class="required">
+                    <input id="date" class="datepicker" name="date" type="text"  placeholder="Gig's date (optional)" value="" >
+                    <input type="submit" value="Search &rarr;" name="search" id="mc-embedded-subscribe" class="button round ">
+                </form>
+                <span class="error hide" style="display:none">Sorry I can't find this gig</span>
+            </div>
+            <div class="large-3 columns">
+                <h5>Latest searches</h5>
+                <ul class="side-nav" id="history">
+                </ul>
+            </div>
+            <div class="large-3 columns">
+                <h5 class="hide" id="results">Search Result</h5>
+                <ul class="side-nav" id="target">
+                </ul>
+            </div>
+            <div class="small-3 columns">
+                <h5 class="hide" id="player">Spotify Player</h5>
+                <iframe id="spotify" style="display:none" src="https://embed.spotify.com/?uri=spotify:trackset:setlista:" width="100%" height="380"></iframe>
+            </div>
+        </div>
+        <footer>
+            <div class="row left">
+                <div class="small-12 columns">
+                    
+                        © 2014 <a href="http://www.the-arm.com" target="_blank">Built by The Arm</a>. All rights reserved.
+                    
                     <div class="social-icons">
                         <a href="http://www.twitter.com/javame" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
                         <a href="http://www.facebook.com/aterreno" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
@@ -77,12 +80,13 @@
                 </div>
             </div>
         </footer>
+        
         <script type="text/javascript">
-                                                window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-                                                d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-                                                _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-                                                $.src='//v2.zopim.com/?2IALvC1T0SvMNS34Nlh62jO8qancfDWO';z.t=+new Date;$.
-                                                type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+            window.$zopim||(function(d,s){var<div class="row">
+            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+            _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+            $.src='//v2.zopim.com/?2IALvC1T0SvMNS34Nlh62jO8qancfDWO';z.t=+new Date;$.
+            type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
         </script>
     </body>
 </html>
