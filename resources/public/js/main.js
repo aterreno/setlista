@@ -1,3 +1,24 @@
+var reloadHistory = function() {
+        $.get('/templates/history.mst', function(template) {
+        $.get("/search-history", function(data) {
+            _.each(data, function(history) {
+                var eventDate = moment(history.date, "DD-MM-YYYY");
+                var date = eventDate.isValid() ? eventDate.format("dddd, MMMM Do YYYY") : "";
+                var rendered = Mustache.render(template, {
+                    artist: history.artist,
+                    rawDate: history.date,
+                    date: date
+                });
+                $('#history').append(rendered);
+                $("a").click(function(evt) {
+                    evt.preventDefault();
+                    History.replaceState(null, "SetLista", $(this).attr('href'));
+                });
+            });
+        });
+    });
+};
+
 var findTrack = function(song, artistName) {
     $.ajax({
         url: 'https://api.spotify.com/v1/search',
@@ -11,25 +32,27 @@ var findTrack = function(song, artistName) {
             var current = $('iframe#spotify').attr('src');
             $('iframe#spotify').attr('src', current.concat(",", trackId));
             $('iframe#spotify').show();
+            console.log("ok");            
         }
     });
 };
+
 var searchSetList = function(artistName, date) {
     $.ajax({
         url: '/search/' + artistName + '/' + date,
-        success: function(response) {
+        success: function(response) {                        
             var setlist = response.setlists.setlist;
             if (!_.isArray(setlist)) {
                 setlist = [setlist]; //need to wrap the result of the API call in an array otherwise we will loop on its fields #fuckme
             }
             _.each(setlist, function(set) {
-                $.get('templates/result.mst', function(template) {
+                $.get('/templates/result.mst', function(template) {
                     var rendered = Mustache.render(template, {
                         id: set["@id"],
                         artist: set.artist["@name"],
                         venue: set.venue["@name"],
                         city: set.venue.city["@name"],
-                        state: set.venue.city["@state"],
+                        state: set.venue.city["@state"],                        
                         date: moment(set["@eventDate"], "DD-MM-YYYY").format("dddd, MMMM Do YYYY")
                     });
                     $('#target').append(rendered);
@@ -41,9 +64,8 @@ var searchSetList = function(artistName, date) {
                             });
                         });
                         $('iframe#spotify').show();
-                                    $('h5#player').show();
-            $('h5#results').show();
-
+                        $('h5#player').show();
+                        $('h5#results').show();                        
                     });
                 });
             });
@@ -54,25 +76,17 @@ var searchSetList = function(artistName, date) {
         }
     });
 };
+
 var reset = function() {
     $("span.error").hide();
     $('iframe#spotify').attr('src', "https://embed.spotify.com/?uri=spotify:trackset:setlista:");
-    $('iframe#spotify').hide();
-}
+    $('iframe#spotify').hide(); 
+};
+
 $(function() {
-    $.get('templates/history.mst', function(template) {
-        $.get("/search-history", function(data) {
-            _.each(data, function(history) {
-                var eventDate = moment(history.date, "DD-MM-YYYY");
-                var date = eventDate.isValid() ? eventDate.format("dddd, MMMM Do YYYY") : "";
-                var rendered = Mustache.render(template, {
-                    artist: history.artist,
-                    date: date
-                });
-                $('#history').append(rendered);
-            });
-        });
-    });
+
+    reloadHistory();
+
     $('.datepicker').pickadate({
         format: 'dd-mm-yyyy',
         max: new Date()
@@ -96,8 +110,9 @@ $(function() {
         }
     });
     $("#search").submit(function(event) {
-        $("#target").html("");
-        searchSetList($("input#artist").val(), $("input#date").val());
+        $("#target").html("");        
+        searchSetList($("input#artist").val(), $("input#date").val());        
+        History.replaceState(null, "SetLista", "/gig/" + $("input#artist").val() + "/"+  $("input#date").val());
         event.preventDefault();
     });
 });

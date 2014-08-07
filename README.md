@@ -18,20 +18,19 @@ With a bit of JS magic you can then query spotify for the songs returned:
 
 ######Todo
 
+* autocomplete for artists
+* make search result unique, so can share the result
 * go private on git
 * better ui :-)
 * save plalyst as separate button / feature will ask to log-in
 * have a separate spotify account for the app and save some 'glorious concerts plalysts' there
-* show last searches
 * make play button work on mobile
 * cloudfront or nginx for static content, bit silly to use compojure for that
-* autocomplete for artists
 * pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist
 * integrate with (rapgenius) for lyrics
 * integrate with MusiXMatch for karaoke
 * most played by artist, least played by artis
 * top searches
 * what are users searching right now
-* make search result unique, so can share the result
 
 

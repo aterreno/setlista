@@ -31,7 +31,9 @@
    :body (json/write-str (search-history/get-all))})
 
 (defroutes setlista-routes
-  (GET "/" [] (home))
+  (GET "/" [] (home))  
+  (GET ["/gig/:artist/"] [artist] (home))
+  (GET ["/gig/:artist/:date"] [artist date] (home)) 
   (GET "/status" [] {:status 200 :body "OK"})
   (GET "/search-history" [] (search-history))
   (GET ["/search/:artist/"] [artist] (search artist))
