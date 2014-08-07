@@ -83,9 +83,11 @@ var reset = function() {
 };
 $(function() {
     
-    var urlChunks = _.last(document.URL.split('/'), 2);
-    $("input#artist").val(decodeURI(_.first(urlChunks)));
-    $("input#date").val(decodeURI(_.last(urlChunks)));
+    if (/gig/i.test(document.URL)) {
+        var urlChunks = _.last(document.URL.split('/'), 2);
+        $("input#artist").val(decodeURI(_.first(urlChunks)));
+        $("input#date").val(decodeURI(_.last(urlChunks)));
+    };
 
     reloadHistory();
     $('.datepicker').pickadate({
