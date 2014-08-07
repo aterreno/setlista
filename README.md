@@ -19,7 +19,6 @@ With a bit of JS magic you can then query spotify for the songs returned:
 ######Todo
 
 * autocomplete for artists
-* make search result unique, so can share the result
 * go private on git
 * better ui :-)
 * save plalyst as separate button / feature will ask to log-in
