@@ -1,11 +1,32 @@
-######The problem
+[Trello url](https://trello.com/b/0ykvNW0h/setlista)
 
-I usually go to a concert, come back home and want to listen again to the gigs songs. 
-Or, I get invited to a gig of a band I don't know and I want to check out their music. 
+######Local run
+	git clone git@github.com:aterreno/setlista.git
+	cd setlista
 
-######Solution? 
+You will need [bower](http://bower.io/) installed to generate the client side code, once installed go to
 
-Connect setlist.fm API to Spotify. 
+	resources/public/
+	
+and run
+
+	bower install
+	
+Setlista uses redis to store the latest searches from users, install [redis](http://redis.io/) and start it up.
+
+You will need [leiningen](https://github.com/technomancy/leiningen) installed to run the server side code, once installed type: 
+	
+	lein run 
+	
+The app should be then running [on port 8000](http://locahost:8000)
+
+######Deploy
+
+	git push heroku master 
+
+will deploy to heroku, and the domain http://www.setlista.com points to that instance
+
+######Old 'Docs'
 
 An example query to setlistfm:
 
@@ -14,22 +35,3 @@ An example query to setlistfm:
 With a bit of JS magic you can then query spotify for the songs returned: 
 
 	https://api.spotify.com/v1/search?q=jayhawks I'm Gonna Make You Love Me
-
-
-######Todo
-
-* autocomplete for artists
-* go private on git
-* better ui :-)
-* save plalyst as separate button / feature will ask to log-in
-* have a separate spotify account for the app and save some 'glorious concerts plalysts' there
-* make play button work on mobile
-* cloudfront or nginx for static content, bit silly to use compojure for that
-* pivot/other useful stuff around playlists: find artists/songs in a page and produce a playlist
-* integrate with (rapgenius) for lyrics
-* integrate with MusiXMatch for karaoke
-* most played by artist, least played by artis
-* top searches
-* what are users searching right now
-
-
