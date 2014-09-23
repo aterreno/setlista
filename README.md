@@ -35,3 +35,5 @@ An example query to setlistfm:
 With a bit of JS magic you can then query spotify for the songs returned: 
 
 	https://api.spotify.com/v1/search?q=jayhawks I'm Gonna Make You Love Me
+
+[ ![Codeship Status for aterreno/setlista](https://www.codeship.io/projects/2a7c10c0-2568-0132-1047-26ef7245ec1c/status)](https://www.codeship.io/projects/37144)
