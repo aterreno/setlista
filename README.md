@@ -1,6 +1,7 @@
 [Trello url](https://trello.com/b/0ykvNW0h/setlista)
 
 ######Local run
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/aterreno/setlista?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 	git clone git@github.com:aterreno/setlista.git
 	cd setlista
 
